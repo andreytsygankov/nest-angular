@@ -1,0 +1,30 @@
+.wrapper{
+  height: calc(100% - 64px);
+}
+
+.inner{
+  padding: 20px;
+}
+
+mat-drawer {
+  width: 200px;
+}
+
+.expanded-toolbar{
+  display: flex;
+  justify-content: space-between;
+
+  &__block-title{
+    display: flex;
+    align-items: center;
+  }
+
+  &__title{
+    font-size: 32px;
+  }
+
+}
+
+mat-menu{
+  flex-direction: column;
+}
