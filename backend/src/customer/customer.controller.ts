@@ -36,6 +36,9 @@ export class CustomerController {
 
     // Retrieve customers list
     @Get('customers')
+    @ApiImplicitQuery({ name: 'limit' })
+    @ApiImplicitQuery({ name: 'offset'})
+    @ApiImplicitQuery({ name: 'filter'})
     async getAllCustomer(@Request() req, @Query() query) {
         const customers = await this.customerService.getAllCustomer(req.user._id, query);
         // return res.status(HttpStatus.OK).json(customers);
