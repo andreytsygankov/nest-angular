@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerService} from '../../services/customers.service';
 import {CustomersResponse} from '../../models/customers-response.model';
-import {MatTableDataSource} from '@angular/material/table';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
@@ -18,10 +17,9 @@ export class DashboardComponent implements OnInit {
       private toastrService: ToastrService,
   ) {}
 
-  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'address', 'description', 'actions'];
-  dataSource = new MatTableDataSource<any>();
-  sizeOptions = [5, 10];
-  limit = this.sizeOptions[0];
+  displayedColumns: string[] = ['First Name', 'Last Name', 'Email', 'Phone', 'Address', 'Description', 'Actions'];
+  dataSource;
+  limit = 10;
   offset = 0;
   length;
   filter = '';
@@ -36,7 +34,7 @@ export class DashboardComponent implements OnInit {
     this.customerService.getCustomers(limit, offset, filter).subscribe((res: CustomersResponse) => {
       this.customersList = res.data.list;
       this.length = res.data.count;
-      this.dataSource.data = res.data.list;
+      this.dataSource = res.data.list;
     }, error => {
       console.log(error);
     });
@@ -47,14 +45,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getServerData(event) {
-    this.limit = event.pageSize;
-    this.offset = event.pageIndex;
+    this.offset = event - 1;
     this.customers(this.limit, this.offset, this.filter);
   }
 
   applyFilter(event) {
     this.filter = event;
-    this.limit = this.sizeOptions[0];
     this.offset = 0;
     this.customers(this.limit, this.offset, this.filter);
   }

@@ -26,10 +26,10 @@ import {ApiImplicitParam} from '@nestjs/swagger/dist/decorators/api-implicit-par
 export class UserController {
     constructor(private userService: UserService) { }
 
-    @Get('user/:userID')
-    @ApiImplicitParam({ name: 'userID' })
-    async getUser(@Param('userID') userID) {
-        const user = await this.userService.getUser(userID);
+    @Get('data')
+    // @ApiImplicitParam({ name: 'userID' })
+    async getUser(@Request() req) {
+        const user = await this.userService.getUser(req.user._id);
         if (!user) throw new NotFoundException('User does not exist!');
         return user;
     }

@@ -6,7 +6,7 @@ export const API_PATH = {
   create: 'customer/create',
   update: 'customer/update',
   delete: 'customer/delete',
-  user: 'user/user',
+  userData: 'user/data',
   user_update: 'user/update'
 };
 

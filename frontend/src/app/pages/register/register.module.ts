@@ -4,8 +4,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { RegisterComponent } from './register.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
+import {NgZorroAntdModule, NzFormModule, NzInputModule} from 'ng-zorro-antd';
+import {NzLayoutModule} from 'ng-zorro-antd/layout';
+import {NzButtonModule} from 'ng-zorro-antd/button';
 
 
 export const routes = [
@@ -19,8 +20,11 @@ export const routes = [
         CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        MatFormFieldModule,
-        MatInputModule,
+        NzFormModule,
+        NzInputModule,
+        NzLayoutModule,
+        NgZorroAntdModule,
+        NzButtonModule,
     ]
 })
 export class RegisterModule {

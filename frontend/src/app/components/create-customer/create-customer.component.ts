@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {CustomerService} from '../../services/customers.service';
 import {CustomersResponse} from '../../models/customers-response.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -34,12 +34,17 @@ export class CreateCustomerComponent implements OnInit {
       description: ['', [Validators.required]],
     });
 
-    this.customerID = this.route.snapshot.queryParamMap.get('id') || '';
-
-    if (this.customerID) {
-      this.dataCustomer(this.customerID);
-      this.currentState = 'update';
-    }
+    this.route.queryParams.subscribe(queryParams => {
+      if ( queryParams.id ) {
+        this.customerID = queryParams.id;
+        this.dataCustomer(this.customerID);
+        this.currentState = 'update';
+      } else {
+        this.customerID = '';
+        this.customerForm.reset();
+        this.currentState = 'new';
+      }
+    });
   }
 
   get isFormValid() {
@@ -74,7 +79,15 @@ export class CreateCustomerComponent implements OnInit {
         console.warn('error', error);
       });
     }
+  }
 
+  deleteCustomer() {
+    this.customerService.deleteCustomer(this.customerID).subscribe((res) => {
+      this.toastrService.success(res.data.message);
+      this.router.navigate(['/']);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

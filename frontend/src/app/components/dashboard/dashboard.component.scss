@@ -2,3 +2,13 @@ table {
   width: 100%;
   max-width: 100% !important;
 }
+
+.pagination{
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+  padding: 5px 16px;
+}

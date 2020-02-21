@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {UserResponse} from '../../models/user-response.model';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-site-layout',
@@ -11,15 +13,27 @@ export class SiteLayoutComponent implements OnInit {
 
   constructor(
       private authService: AuthService,
-      private router: Router
+      private router: Router,
+      private userService: UserService
   ) { }
 
-  user: any;
+  isCollapsed = false;
+  user;
+  userID: any;
 
   public title = 'Andromeda';
+  public placement = 'bottomRight';
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    this.dataUser();
+  }
+
+  dataUser() {
+    this.userService.getUser().subscribe((response: UserResponse) => {
+      this.user = response.data;
+    }, error => {
+      console.warn('error', error);
+    });
   }
 
   logout() {

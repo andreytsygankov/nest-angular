@@ -1,24 +1,33 @@
-<h1 class="h1">Profile</h1>
-<div>
-    <form class="form-customer" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>First name</mat-label>
-            <input matInput formControlName="firstName">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Last name</mat-label>
-            <input matInput formControlName="lastName">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address">
-        </mat-form-field>
-        <div>
-            <button mat-flat-button color="primary" type="submit" [disabled]="!isFormValid">Update</button>
-        </div>
-    </form>
-</div>
+<h1>Profile</h1>
+
+<form nz-form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="firstName">First name</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid first name!">
+            <input nzSize="large" nz-input formControlName="firstName" id="firstName" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="lastName">Last name</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid last name!">
+            <input nzSize="large" nz-input formControlName="lastName" id="lastName" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid email!">
+            <input nzSize="large" nz-input formControlName="email" id="email" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="address">Address</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid address!">
+            <input nzSize="large" nz-input formControlName="address" id="address" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="3">
+            <button nz-button nzSize="large" nzType="primary" [disabled]="!isFormValid">Update</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

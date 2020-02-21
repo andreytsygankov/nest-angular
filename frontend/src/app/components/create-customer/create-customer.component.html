@@ -1,32 +1,53 @@
-<h1 class="h1">{{currentState === 'new' ? 'Create' : 'Update'}} customer</h1>
-<div>
-    <form class="form-customer" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>First name</mat-label>
-            <input matInput formControlName="first_name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Last name</mat-label>
-            <input matInput formControlName="last_name">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Phone</mat-label>
-            <input matInput formControlName="phone">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <input matInput formControlName="description">
-        </mat-form-field>
-        <div>
-            <button mat-flat-button color="primary" type="submit" [disabled]="!isFormValid">{{currentState === 'new' ? 'Create' : 'Update'}}</button>
-        </div>
-    </form>
-</div>
+<h1>{{currentState === 'new' ? 'Create' : 'Update'}} customer</h1>
+<form nz-form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="first_name">First name</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid first name!">
+            <input nzSize="large" nz-input formControlName="first_name" id="first_name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="last_name">Last name</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid last name!">
+            <input nzSize="large" nz-input formControlName="last_name" id="last_name" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="email">Email</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid email!">
+            <input nzSize="large" nz-input formControlName="email" id="email" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="phone">Phone</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid phone!">
+            <input nzSize="large" nz-input formControlName="phone" id="phone" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="address">Address</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid address!">
+            <input nzSize="large" nz-input formControlName="address" id="address" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSm]="3" [nzXs]="24" nzRequired nzFor="description">Description</nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24" nzErrorTip="The input is not valid description!">
+            <input nzSize="large" nz-input formControlName="description" id="description" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="10" [nzOffset]="3">
+            <button nz-button nzSize="large" nzType="primary" [disabled]="!isFormValid">{{currentState === 'new' ? 'Create' : 'Update'}}</button>
+            <button
+                    *ngIf="customerID"
+                    nz-popconfirm
+                    nzPopconfirmTitle="Are you sure delete this customer?"
+                    (nzOnConfirm)="deleteCustomer()"
+                    nz-button
+                    nzSize="large"
+                    nzType="danger"
+                    >Delete</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

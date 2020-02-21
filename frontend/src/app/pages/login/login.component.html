@@ -1,32 +1,36 @@
 <div class="container-form">
-    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form nz-form [formGroup]="loginForm" class="form-signin" (ngSubmit)="onSubmit()">
         <h2 class="form-signin__title">Sign in (test@test.com/Test123)</h2>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-            <input matInput
-                   [ngClass]="inputClasses(form, 'email')"
-                   formControlName="email">
-            <div *ngIf="form.email.touched && form.email.errors" class="group-errors">
-                <div *ngIf="form.email.errors.required">Email is required</div>
-            </div>
-            <div *ngIf="form.email.dirty && form.email.errors" class="group-errors">
-                <div *ngIf="form.email.errors.email">Invalid email format</div>
-            </div>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-            <input matInput
-                   type="password"
-                   [ngClass]="inputClasses(form, 'password')"
-                   formControlName="password">
-            <div *ngIf="form.password.touched && form.password.errors" class="group-errors">
-                <div *ngIf="form.password.errors.required">Password is required</div>
-            </div>
-        </mat-form-field>
-        <div class="form-signin__group-buttons">
-            <a [routerLink]="['/register']">Sign up</a>
-            <button class="btn btn-primary" type="submit" [disabled]="!isFormValid">Sign in</button>
-            <div *ngIf="error" class="group-errors">{{error}}</div>
-        </div>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="emailErrorTpl">
+                <input nzSize="large" type="text" nz-input formControlName="email" placeholder="Email"/>
+                <ng-template #emailErrorTpl let-control>
+                    <ng-container *ngIf="control.hasError('email')">
+                        The input is not valid E-mail!
+                    </ng-container>
+                    <ng-container *ngIf="control.hasError('required')">
+                        Please input your E-mail!
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+                <input nzSize="large" type="password" nz-input formControlName="password" placeholder="Password"/>
+                <ng-template #passwordErrorTpl let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        Please input your Password!
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <button nz-button nzSize="large" class="form-signin__button" nzType="primary" [disabled]="!isFormValid">
+                    Log in
+                </button>
+                <a [routerLink]="['/register']">Sign up</a>
+            </nz-form-control>
+        </nz-form-item>
     </form>
 </div>

@@ -26,8 +26,8 @@ export class UserService {
     }
 
 
-    getUser(id): Observable<UserResponse> {
-        return this.http.get<UserResponse>(`${this.apiUrl}/${API_PATH.user}/${id}`)
+    getUser(): Observable<UserResponse> {
+        return this.http.get<UserResponse>(`${this.apiUrl}/${API_PATH.userData}`)
             .pipe(
                 take(1),
                 map((res: UserResponse) => {

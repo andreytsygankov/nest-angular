@@ -13,23 +13,15 @@ import {AuthService} from './services/auth.service';
 import {JwtInterceptor} from './services/jwtInterceptor.service';
 import {ErrorInterceptor} from './services/errorInterceptor.service';
 import {CustomerService} from './services/customers.service';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {CreateCustomerComponent} from './components/create-customer/create-customer.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import {ToastrModule} from 'ngx-toastr';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 import {ProfileComponent} from './components/profile/profile.component';
 import {UserService} from './services/user.service';
-import {MatPaginatorModule} from "@angular/material/paginator";
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import {NgZorroAntdModule, NZ_I18N, en_US} from 'ng-zorro-antd';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @NgModule({
     declarations: [
@@ -45,22 +37,14 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         HttpClientModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDividerModule,
-        MatProgressSpinnerModule,
         FlexLayoutModule,
-        MatFormFieldModule,
-        MatInputModule,
         ToastrModule.forRoot({
             timeOut: 3000
         }),
-        MatSidenavModule,
-        MatListModule,
-        MatPaginatorModule,
+        NzLayoutModule,
+        NgZorroAntdModule,
+        NzButtonModule,
+        NzFormModule
     ],
     providers: [
         HttpClientModule,
@@ -68,15 +52,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         AuthService,
         UserService,
         CustomerService,
-        MatToolbarModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDividerModule,
-        MatProgressSpinnerModule,
         {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        { provide: NZ_I18N, useValue: en_US }
     ],
     bootstrap: [AppComponent]
 })

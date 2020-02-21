@@ -35,19 +35,15 @@ export class ProfileComponent implements OnInit {
             address: ['', [Validators.required]],
         });
 
-        this.userID = JSON.parse(localStorage.getItem('user'))._id || '';
-
-        if (this.userID) {
-            this.dataUser(this.userID);
-        }
+        this.dataUser();
     }
 
     get isFormValid() {
         return this.userForm.valid;
     }
 
-    dataUser(id) {
-        this.userService.getUser(id).subscribe((response: UserResponse) => {
+    dataUser() {
+        this.userService.getUser().subscribe((response: UserResponse) => {
             this.dataCustomerObj = response.data;
             this.userForm.patchValue(response.data, {onlySelf: true});
         }, error => {

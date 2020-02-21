@@ -10,6 +10,7 @@
 }
 
 .form-signin {
+  text-align: left;
   max-width: 400px;
   width: 100%;
   padding: 0;
@@ -20,7 +21,6 @@
   &__title {
     text-align: center;
     color: black;
-
     font-size: 24px;
     line-height: 28px;
     text-align: center;
@@ -28,69 +28,9 @@
     font-weight: bold;
   }
 
-  .form-group {
-    padding-bottom: 25px;
-    position: relative;
-    margin: 0;
-  }
-
-  .form-group .valid {
-    border: 1px solid green;
-  }
-
-  .form-group .invalid {
-    border: 1px solid red;
-  }
-
-  .group-errors {
-    position: absolute;
-    bottom: -15px;
-    color: red;
-    left: 0;
-    font-size: 12px;
-    line-height: 1;
-    font-weight: 300;
-  }
-
-  &__group-buttons {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-
-    a {
-      text-align: left;
-      color: black;
-      display: block;
-      font-size: 16px;
-      line-height: 24px;
-      text-decoration: none;
-    }
-
-    button {
-      background-color: black;
-      border-radius: 4px;
-      color: white;
-      font-size: 16px;
-      line-height: 19px;
-      text-align: center;
-      display: inline-block;
-      padding: 10px 40px;
-      border: 1px solid black;
-      box-shadow: none;
-    }
-
-    .btn-primary, .btn-primary:focus {
-      background: black;
-      border: 1px solid black;
-      color: white;
-    }
-
-    .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle,
-    .btn-primary:not(:disabled):not(.disabled):hover, .btn-primary:not(:disabled):not(.disabled).hover, .show > .btn-primary.dropdown-toggle {
-      background-color: black;
-      border: 1px solid black;
-    }
+  &__button {
+    width: 100%;
   }
 }
+
+
