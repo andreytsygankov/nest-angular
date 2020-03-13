@@ -7,6 +7,8 @@ interface User {
 interface Data {
   user: User;
   token: string;
+  expiredAt: Date;
+  refreshToken: string;
 }
 
 export interface LoginResponse {

@@ -8,7 +8,11 @@ export class AuthService {
     constructor(private userService: UserService) {}
 
     async signPayload(payload: Payload) {
-        return sign(payload, 'secretKey', { expiresIn: '14 days' });
+        return sign(payload, `${process.env.SECRET_KEY}`, { expiresIn: `${process.env.TOKEN_LIFE}`});
+    }
+
+    async signPayloadRefresh(payload: Payload) {
+        return sign(payload, `${process.env.SECRET_KEY_REFRESH}`, { expiresIn: `${process.env.TOKEN_LIFE_REFRESH}`});
     }
 
     async validateUser(payload: Payload) {

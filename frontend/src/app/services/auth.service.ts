@@ -80,6 +80,8 @@ export class AuthService {
 
           StorageService.setItem('token', res.data.token, true);
           StorageService.setItem('user', user);
+          StorageService.setItem('expiredAt', res.data.expiredAt);
+          StorageService.setItem('refreshToken', res.data.refreshToken);
 
           this.setloggedIn(true);
 

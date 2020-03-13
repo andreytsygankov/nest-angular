@@ -11,6 +11,7 @@ import {APP_INTERCEPTOR} from '@nestjs/core';
 import {TransformInterceptor} from './interceptors/transform.interceptor';
 import {ConfigModule, ConfigService} from '@nestjs/config';
 import {HandlebarsAdapter, MailerModule} from '@nest-modules/mailer';
+import {ClientsModule, Transport} from '@nestjs/microservices';
 
 @Module({
     imports: [
@@ -34,6 +35,15 @@ import {HandlebarsAdapter, MailerModule} from '@nest-modules/mailer';
                 },
             },
         }),
+        // ClientsModule.register([
+        //     {
+        //         name: process.env.REDIS_NAME,
+        //         transport: Transport.REDIS,
+        //         options: {
+        //             url: process.env.REDIS,
+        //         },
+        //     },
+        // ]),
         CustomerModule,
         UserModule,
         AuthModule,

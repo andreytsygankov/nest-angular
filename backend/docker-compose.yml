@@ -1,0 +1,61 @@
+version: '3.2'
+services:
+    api:
+      container_name: nest-api
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      volumes:
+        - ./uploads:/app/uploads
+      environment:
+        - NODE_ENV=${NODE_ENV}
+      ports:
+        - ${PORT}:${PORT}
+      links:
+        - db
+        - redis
+      depends_on:
+        - db
+        - redis
+
+  db:
+    container_name: nest-db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - type: 'volume'
+        source: db-data
+        target: /data/db
+        volume:
+          nocopy: true
+    ports:
+      - ${DB_PORT}:27017
+
+  redis:
+    container_name: nest-redis
+    image: redis:5.0.5-alpine
+    hostname: redis
+    command:
+      - 'redis-server'
+      - '--loglevel ${REDIS_LOGLEVEL:-warning}'
+      - '--databases 2'
+      - '--save 900 1'
+      - '--save 300 10'
+      - '--save 60 10000'
+      - '--maxmemory ${REDIS_MAXMEM:-50mb}'
+      - '--maxmemory-policy ${REDIS_POLICY:-noeviction}'
+      - '--requirepass ${REDIS_PASS}'
+    volumes:
+      - type: 'volume'
+        source: redis-data
+        target: /data/redis
+        volume:
+          nocopy: true
+    ports:
+      - ${REDIS_PORT}:6379
+    logging:
+      driver: none
+
+volumes:
+  db-data:
+  redis-data:
